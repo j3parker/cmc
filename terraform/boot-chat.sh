@@ -32,10 +32,13 @@ echo "Creating the mount point for keys"
 mkdir -p ~/synapse/keys
 chown synapse:synapse ~/synapse/keys
 
+# Mount as root with allow_other which isn't great...
+# TODO: move to rootless docker so that we don't need to do this
+echo "Mounting the keys bucket"
+gcsfuse --file-mode 600 --uid 1337 -o allow_other cmc-chat-keys /home/synapse/keys
+
 echo "Switching to synapse user"
 sudo -u synapse /bin/bash <<EOF
-  echo "Mounting the keys bucket"
-  gcsfuse --file-mode 600 cmc-chat-keys ~/keys
 
   export GIT_SSH_COMMAND='ssh -i ~/keys/github/deploy_key'
   mkdir -p ~/.ssh
