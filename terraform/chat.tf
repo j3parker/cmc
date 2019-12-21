@@ -34,4 +34,8 @@ resource "google_compute_instance" "chat" {
   }
 
   metadata_startup_script = file("boot-chat.sh")
+
+  service_account {
+    scopes = ["storage-full"]
+  }
 }

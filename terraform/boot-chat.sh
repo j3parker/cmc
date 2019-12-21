@@ -18,12 +18,12 @@ fi
 if ! id -u synapse > /dev/null 2>&1; then
   echo "Creating the synapse user"
   groupadd -g 1337 synapse
-  useradd -m -u 1337 -g synapse -G fuse synapse
+  useradd -m -u 1337 -g synapse synapse
 fi
 
 echo "Creating the mount point for keys"
-mkdir keys
-chown synapse:synapse keys
+mkdir /home/synapse/keys
+chown synapse:synapse /home/synapse/keys
 
 echo "Dropping permissions"
 su - synapse
@@ -32,6 +32,7 @@ echo "Mounting the keys bucket"
 gcsfuse cmc-chat-keys keys
 
 export GIT_SSH_COMMAND='ssh -i ~/keys/github/deploy_key'
+ssh-keyscan github.com >> ~/.ssh/known_hosts # YOLO
 if [ -d "cmc" ]; then
   echo "Repo directory exists; pulling"
   cd cmc
