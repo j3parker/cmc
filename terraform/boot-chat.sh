@@ -39,7 +39,7 @@ gcsfuse --file-mode 600 --uid 1337 -o allow_other cmc-chat-keys /home/synapse/ke
 
 echo "Switching to synapse user"
 sudo -u synapse /bin/bash <<EOF
-  cd $HOME
+  cd /home/synapse
   
   export GIT_SSH_COMMAND='ssh -i ~/keys/github/deploy_key'
   mkdir -p .ssh
