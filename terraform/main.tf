@@ -1,5 +1,13 @@
+variable "googlecreds" {
+  type = string
+}
+
+locals {
+  region = "northamerica-northeast1"
+}
+
 provider "google" {
-  credentials = "${googlecreds}"
+  credentials = "${var.googlecreds}"
   project     = "cmc-things"
-  region      = "northamerica-northeast1"
+  region      = "${local.region}"
 }
