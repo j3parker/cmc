@@ -13,10 +13,9 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v2
       - name: "Set up Google Cloud"
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
-        with:
-          version: '270.0.0'
-          service_account_key: ${{ secrets.GOOGLE_CREDS }}
+        run: echo $GOOGLE_CREDS | base64 -d > google-creds.json
+        env:
+          GOOGLE_CREDS: ${{ secrets.GOOGLE_CREDS }}
       - name: 'Terraform Init'
         uses: hashicorp/terraform-github-actions@master
         with:
@@ -25,6 +24,7 @@ jobs:
           tf_actions_subcommand: 'init'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_APPLICATION_CREDENTIALS: /github/workspace/google-creds.json
       - name: 'Terraform Apply'
         uses: hashicorp/terraform-github-actions@master
         with:
@@ -33,3 +33,4 @@ jobs:
           tf_actions_subcommand: 'apply'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_APPLICATION_CREDENTIALS: /github/workspace/google-creds.json
