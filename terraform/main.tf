@@ -3,3 +3,7 @@ provider "google" {
   project     = "cmc-things"
   region      = "northamerica-northeast1"
 }
+
+locals {
+  region = "NORTHAMERICA-NORTHEAST1"
+}
