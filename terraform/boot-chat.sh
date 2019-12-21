@@ -32,7 +32,7 @@ mkdir -p ~/synapse/keys
 chown synapse:synapse ~/synapse/keys
 
 echo "Dropping permissions"
-su - synapse
+sudo -u synapse -- /bin/bash -c <<EOF
 
 echo "Mounting the keys bucket"
 gcsfuse --file-mode 600 cmc-chat-keys ~/keys
@@ -53,3 +53,5 @@ fi
 echo "Starting containers"
 cd chat
 docker-compose up
+
+EOF
