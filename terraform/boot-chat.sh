@@ -39,10 +39,11 @@ gcsfuse --file-mode 600 --uid 1337 -o allow_other cmc-chat-keys /home/synapse/ke
 
 echo "Switching to synapse user"
 sudo -u synapse /bin/bash <<EOF
-
+  cd $HOME
+  
   export GIT_SSH_COMMAND='ssh -i ~/keys/github/deploy_key'
-  mkdir -p ~/.ssh
-  ssh-keyscan github.com >> ~/.ssh/known_hosts # YOLO
+  mkdir -p .ssh
+  ssh-keyscan github.com >> .ssh/known_hosts # YOLO
   if [ -d "cmc" ]; then
     echo "Repo directory exists; pulling"
     cd cmc
