@@ -4,6 +4,7 @@ variable "googlecreds" {
 
 locals {
   region = "northamerica-northeast1"
+  zone   = "northamerica-northeast1a"
 }
 
 provider "google" {
