@@ -31,27 +31,25 @@ echo "Creating the mount point for keys"
 mkdir -p ~/synapse/keys
 chown synapse:synapse ~/synapse/keys
 
-echo "Dropping permissions"
-sudo -u synapse -- /bin/bash -c <<EOF
+echo "Switching to synapse user"
+sudo -u synapse /bin/bash <<EOF
+  echo "Mounting the keys bucket"
+  gcsfuse --file-mode 600 cmc-chat-keys ~/keys
 
-echo "Mounting the keys bucket"
-gcsfuse --file-mode 600 cmc-chat-keys ~/keys
+  export GIT_SSH_COMMAND='ssh -i ~/keys/github/deploy_key'
+  mkdir -p ~/.ssh
+  ssh-keyscan github.com >> ~/.ssh/known_hosts # YOLO
+  if [ -d "cmc" ]; then
+    echo "Repo directory exists; pulling"
+    cd cmc
+    git pull origin master
+  else
+    echo "Cloning repo"
+    git clone ssh://git@github.com/j3parker/cmc
+    cd cmc
+  fi 
 
-export GIT_SSH_COMMAND='ssh -i ~/keys/github/deploy_key'
-mkdir -p ~/.ssh
-ssh-keyscan github.com >> ~/.ssh/known_hosts # YOLO
-if [ -d "cmc" ]; then
-  echo "Repo directory exists; pulling"
-  cd cmc
-  git pull origin master
-else
-  echo "Cloning repo"
-  git clone ssh://git@github.com/j3parker/cmc
-  cd cmc
-fi 
-
-echo "Starting containers"
-cd chat
-docker-compose up
-
+  echo "Starting containers"
+  cd chat
+  docker-compose up
 EOF
