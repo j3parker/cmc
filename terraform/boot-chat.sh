@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+echo "Hello, world!"
+
 if [ ! -f GCSFUSE_IS_INSTALLED ]; then
   echo "Installing gcsfuse"
   GCSFUSE_REPO=gcsfuse-$(lsb_release -c -s)
@@ -9,7 +11,7 @@ if [ ! -f GCSFUSE_IS_INSTALLED ]; then
   curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
   apt-get update
-  apt-get install gcsfuse
+  apt-get install -y gcsfuse
   touch GCSFUSE_IS_INSTALLED
 fi
 
