@@ -17,7 +17,7 @@ data "google_compute_image" "ubuntu" {
 
 resource "google_compute_instance" "chat" {
   name         = "chat"
-  machine_type = "f1-micro"
+  machine_type = "n1-standard-1"
   zone         = "${local.zone}"
 
   boot_disk {
