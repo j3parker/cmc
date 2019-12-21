@@ -17,7 +17,7 @@ fi
 
 if ! id -u synapse > /dev/null 2>&1; then
   echo "Creating the synapse user"
-  groupadd -g 1337
+  groupadd -g 1337 synapse
   useradd -m -u 1337 -g synapse -G fuse synapse
 fi
 
