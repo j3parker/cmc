@@ -52,5 +52,5 @@ sudo -u synapse /bin/bash <<EOF
 
   echo "Starting containers"
   cd chat
-  docker-compose up
+  docker-compose up --build
 EOF
