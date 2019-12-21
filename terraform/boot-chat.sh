@@ -28,13 +28,13 @@ if ! id -u synapse > /dev/null 2>&1; then
 fi
 
 echo "Creating the mount point for keys"
-mkdir -p ~/synapse/keys
-chown synapse:synapse ~/synapse/keys
+mkdir -p /home/synapse/keys
+chown synapse:synapse /home/synapse/keys
 
 echo "Switching to synapse user"
 sudo -u synapse /bin/bash <<EOF
   echo "Mounting the keys bucket"
-  gcsfuse --file-mode 600 cmc-chat-keys ~/keys
+  gcsfuse --file-mode 600 cmc-chat-keys /home/keys
 
   export GIT_SSH_COMMAND='ssh -i ~/keys/github/deploy_key'
   mkdir -p ~/.ssh
