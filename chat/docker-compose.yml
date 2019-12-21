@@ -5,7 +5,7 @@ services:
     ports:
     - "8448:8448"
     volumes:
-    - ./keys/synapse:/home/synapse/keys
+    - ~/keys/synapse:/home/synapse/keys
     - ./ephemeral/logs:/home/synapse/logs
   nginx:
     image: nginx:1.17.6-alpine
@@ -14,10 +14,10 @@ services:
     - "443:443"
     volumes:
     - ./nginx/etc/nginx/conf.d:/etc/nginx/conf.d
-    - ./keys/letsencrypt:/etc/letsencrypt
+    - ~/keys/letsencrypt:/etc/letsencrypt
     - ./ephemeral/certbot:/var/www/certbot
   certbot:
     image: certbot/certbot:v1.0.0
     volumes:
-    - ./keys/letsencrypt:/etc/letsencrypt
+    - ~/keys/letsencrypt:/etc/letsencrypt
     - ./ephemeral/certbot:/var/www/certbot
