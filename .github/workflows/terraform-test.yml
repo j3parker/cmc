@@ -1,9 +1,12 @@
 name: 'Terraform'
 on:
-  - pull_request
+  pull_request:
+    paths:
+    - '.github/workflows/terraform-deploy.yml'
+    - 'terraform/*'
 jobs:
   terraform:
-    name: 'Terraform'
+    name: 'Terraform Test'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
