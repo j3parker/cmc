@@ -3,8 +3,13 @@ on:
   push:
     branches: [master]
     paths:
-    - '.github/workflows/chat-deploy.yml'
-    - 'chat/*'
+    - .github/workflows/chat-deploy.yml
+    - chat/*
+    - chat/*/*
+    - chat/*/*/*
+    - chat/*/*/*/*
+    - chat/*/*/*/*/*
+    - chat/*/*/*/*/*/*
 jobs:
   synapse:
     name: 'Chat Deploy'
