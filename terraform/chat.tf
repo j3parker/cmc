@@ -19,9 +19,7 @@ resource "google_compute_instance" "chat" {
   name         = "chat"
   machine_type = "n1-standard-1"
   zone         = "${local.zone}"
-  
-  allow_stopping_for_update = true
-  
+
   boot_disk {
     initialize_params {
       image = data.google_compute_image.ubuntu.self_link
@@ -35,9 +33,10 @@ resource "google_compute_instance" "chat" {
     }
   }
 
-  metadata_startup_script = file("boot-chat.sh")
-
   service_account {
     scopes = ["storage-full"]
   }
+  
+  metadata_startup_script   = file("boot-chat.sh")
+  allow_stopping_for_update = true
 }
