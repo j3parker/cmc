@@ -1,6 +1,6 @@
 locals {
   region = "northamerica-northeast1"
-  zone   = "northamerica-northeast1a"
+  zone   = "northamerica-northeast1-a"
 }
 
 terraform {
