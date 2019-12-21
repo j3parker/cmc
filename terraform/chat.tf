@@ -19,7 +19,9 @@ resource "google_compute_instance" "chat" {
   name         = "chat"
   machine_type = "n1-standard-1"
   zone         = "${local.zone}"
-
+  
+  allow_stopping_for_update = true
+  
   boot_disk {
     initialize_params {
       image = data.google_compute_image.ubuntu.self_link
