@@ -1,9 +1,13 @@
-provider "google" {
-  credentials = "${googlecreds}"
-  project     = "cmc-things"
-  region      = "northamerica-northeast1"
+variable "googlecreds" {
+  type = string
 }
 
 locals {
-  region = "NORTHAMERICA-NORTHEAST1"
+  region = "northamerica-northeast1"
+}
+
+provider "google" {
+  credentials = "${var.googlecreds}"
+  project     = "cmc-things"
+  region      = "${local.region}"
 }
