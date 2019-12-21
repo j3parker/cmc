@@ -1,0 +1,19 @@
+version: "3"
+services:
+  synapse:
+    build:
+      context: .
+      dockerfile: Dockerfile.synapse
+    ports:
+    - "8448:8448"
+    volumes:
+    - ./keys:/home/synapse/keys
+    - ./logs:/home/synapse/logs
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+    - "443:443"
+    volumes:
+    - ./keys:/keys
