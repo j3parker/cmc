@@ -15,7 +15,7 @@ if [ ! -f GCSFUSE_IS_INSTALLED ]; then
   touch GCSFUSE_IS_INSTALLED
 fi
 
-if [ ! id -u synapse > /dev/null 2>&1 ]; then
+if ! id -u synapse > /dev/null 2>&1; then
   echo "Creating the synapse user"
   groupadd -g 1337
   useradd -m -u 1337 -g synapse -G fuse synapse
