@@ -29,8 +29,8 @@ if ! id -u synapse > /dev/null 2>&1; then
 fi
 
 echo "Creating the mount point for keys"
-mkdir -p ~/synapse/keys
-chown synapse:synapse ~/synapse/keys
+mkdir -p /home/synapse/keys
+chown synapse:synapse /home/synapse/keys
 
 # Mount as root with allow_other which isn't great...
 # TODO: move to rootless docker so that we don't need to do this
