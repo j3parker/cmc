@@ -1,0 +1,5 @@
+# When we invoke docker-compose from this folder we use this folder for
+# ephemeral storage for things like logs. It doesn't and shouldn't get cleared
+# if we restart the service or machine, but we aren't worried about persisting
+# it somewhere like GCS.
+*
