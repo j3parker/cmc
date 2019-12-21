@@ -24,7 +24,8 @@ fi
 if ! id -u synapse > /dev/null 2>&1; then
   echo "Creating the synapse user"
   groupadd -g 1337 synapse
-  useradd -m -u 1337 -g synapse synapse
+  # TODO: use rootless docker
+  useradd -m -u 1337 -g synapse -G docker synapse
 fi
 
 echo "Creating the mount point for keys"
