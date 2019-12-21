@@ -1,15 +1,23 @@
 version: "3"
 services:
   synapse:
-    build: synapse/Dockerfile
+    build: synapse
     ports:
     - "8448:8448"
     volumes:
-    - ./keys:/home/synapse/keys
-    - ./logs:/home/synapse/logs
+    - ./keys/synapse:/home/synapse/keys
+    - ./ephemeral/logs:/home/synapse/logs
   nginx:
-    build: nginx/Dockerfile
+    image: nginx:1.17.6-alpine
     ports:
+    - "80:80"
     - "443:443"
     volumes:
-    - ./keys:/keys
+    - ./nginx/etc/nginx/conf.d:/etc/nginx/conf.d
+    - ./keys/letsencrypt:/etc/letsencrypt
+    - ./ephemeral/certbot:/var/www/certbot
+  certbot:
+    image: certbot/certbot:v1.0.0
+    volumes:
+    - ./keys/letsencrypt:/etc/letsencrypt
+    - ./ephemeral/certbot:/var/www/certbot

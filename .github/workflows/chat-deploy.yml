@@ -2,6 +2,9 @@ name: 'Chat Deploy'
 on:
   push:
     branches: [master]
+    paths:
+    - '.github/workflows/chat-deploy.yml'
+    - 'chat/*'
 jobs:
   synapse:
     name: 'Chat Deploy'
@@ -18,8 +21,3 @@ jobs:
       run: |
         cd chat/synapse
         docker build -t synapse .
-    - name: 'Build NGINX Container'
-      run: |
-        cd chat/nginx
-        docker build -t nginx .
-  
