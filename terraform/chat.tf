@@ -32,4 +32,6 @@ resource "google_compute_instance" "chat" {
       nat_ip = google_compute_address.chat.address
     }
   }
+
+  metadata_startup_script = file("boot-chat.sh")
 }

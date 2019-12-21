@@ -15,9 +15,6 @@ jobs:
       with:
         version: '270.0.0'
         service_account_key: ${{ secrets.GOOGLE_CREDS }}
-    - name: 'Checkout'
-      uses: actions/checkout@master
-    - name: 'Build Synapse Container'
-      run: |
-        cd chat/synapse
-        docker build -t synapse .
+    # TODO: decide how we want to trigger a redeploy.
+    # One option is to just reboot the machine, but that would cause downtime.
+    # Maybe that's OK for now?

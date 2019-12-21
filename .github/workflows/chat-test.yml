@@ -1,5 +1,9 @@
 name: 'Chat Test'
-on: [pull_request]
+on: 
+  pull_request:
+    paths:
+    - '.github/workflows/chat-test.yml'
+    - 'chat/*'
 jobs:
   synapse:
     name: 'Chat Test'

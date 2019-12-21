@@ -8,7 +8,7 @@ RUN apt-get update && \
 RUN pip3 install --upgrade setuptools && \
     pip3 install matrix-synapse
 
-RUN useradd -ms /bin/bash synapse
+RUN useradd -u 1337 synapse
 USER synapse
 WORKDIR /home/synapse
 
