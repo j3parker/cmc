@@ -1,0 +1,25 @@
+name: 'Chat Deploy'
+on:
+  push:
+    branches: [master]
+jobs:
+  synapse:
+    name: 'Chat Deploy'
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Set up Google Cloud'
+      uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      with:
+        version: '270.0.0'
+        service_account_key: ${{ secrets.GOOGLE_CREDS }}
+    - name: 'Checkout'
+      uses: actions/checkout@master
+    - name: 'Build Synapse Container'
+      run: |
+        cd chat/synapse
+        docker build -t synapse .
+    - name: 'Build NGINX Container'
+      run: |
+        cd chat/nginx
+        docker build -t nginx .
+  

@@ -96,9 +96,9 @@ federation_ip_range_blacklist:
 #   webclient: A web client. Requires web_client_location to be set.
 #
 listeners:
-  - port: 8448
+  - port: 8008
     type: http
-    tls: true
+    tls: false
     resources:
       - names: [client, federation]
 
@@ -118,11 +118,6 @@ allow_per_room_profiles: true
 redaction_retention_period: 2d
 
 user_ips_max_age: 14d
-
-## TLS ##
-
-tls_certificate_path: "/home/synapse/keys/cmc.rip.tls.crt"
-tls_private_key_path: "/home/synapse/keys/cmc.rip.tls.key"
 
 ## Database ##
 
