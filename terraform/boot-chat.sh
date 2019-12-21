@@ -17,8 +17,8 @@ fi
 
 if [ ! id -u synapse > /dev/null 2>&1 ]; then
   echo "Creating the synapse user"
-  useradd -u 1337 synapse
-  usermod -a -G fuse synapse
+  groupadd -g 1337
+  useradd -m -u 1337 -g synapse -G fuse synapse
 fi
 
 echo "Creating the mount point for keys"
