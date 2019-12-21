@@ -15,6 +15,12 @@ if [ ! -f GCSFUSE_IS_INSTALLED ]; then
   touch GCSFUSE_IS_INSTALLED
 fi
 
+if [ ! -f DOCKER_COMPOSE_IS_INSTALLED ]; then
+  echo "Installing docker-compose"
+  apt-get install -y docker-compose
+  touch DOCKER_COMPOSE_IS_INSTALLED
+fi
+
 if ! id -u synapse > /dev/null 2>&1; then
   echo "Creating the synapse user"
   groupadd -g 1337 synapse
@@ -22,16 +28,17 @@ if ! id -u synapse > /dev/null 2>&1; then
 fi
 
 echo "Creating the mount point for keys"
-mkdir /home/synapse/keys
-chown synapse:synapse /home/synapse/keys
+mkdir -p ~/synapse/keys
+chown synapse:synapse ~/synapse/keys
 
 echo "Dropping permissions"
 su - synapse
 
 echo "Mounting the keys bucket"
-gcsfuse cmc-chat-keys keys
+gcsfuse --file-mode 600 cmc-chat-keys ~/keys
 
 export GIT_SSH_COMMAND='ssh -i ~/keys/github/deploy_key'
+mkdir -p ~/.ssh
 ssh-keyscan github.com >> ~/.ssh/known_hosts # YOLO
 if [ -d "cmc" ]; then
   echo "Repo directory exists; pulling"
