@@ -5,8 +5,9 @@ services:
     ports:
     - "8448:8448"
     volumes:
-    - ~/keys/synapse:/home/synapse/keys
+    - ../../keys/synapse:/home/synapse/keys
     - ./ephemeral/logs:/home/synapse/logs
+    - /mnt/db:/home/synapse/db
   nginx:
     image: nginx:1.17.6-alpine
     ports:
