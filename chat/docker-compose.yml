@@ -3,7 +3,7 @@ services:
   synapse:
     build: synapse
     ports:
-    - "8448:8448"
+    - "8008:8008"
     volumes:
     - ../../keys/synapse:/home/synapse/keys
     - ./ephemeral/logs:/home/synapse/logs
