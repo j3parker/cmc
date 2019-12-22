@@ -16,5 +16,5 @@ COPY cmc.rip.log.config ./
 COPY homeserver.yaml ./
 COPY init.sh ./
 
-ENTRYPOINT init.sh
+ENTRYPOINT /home/synapse/init.sh
 CMD python3 -B -m synapse.app.homeserver -c homeserver.yaml
