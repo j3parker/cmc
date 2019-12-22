@@ -33,6 +33,7 @@ mkdir -p /home/synapse/keys
 chown synapse:synapse /home/synapse/keys
 
 echo "Mounting the database volume"
+mkdir -p /mnt/db
 mount -o discard,defaults /dev/sdb /mnt/db
 chown synapse:synapse /mnt/db
 
