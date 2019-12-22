@@ -54,6 +54,12 @@ resource "google_compute_instance" "chat" {
     scopes = ["storage-full"]
   }
 
+  shielded_instance_config {
+    enable_integrity_monitoring = true
+    enable_secure_boot          = true
+    enable_vtpm                 = true
+  }
+
   metadata_startup_script   = file("boot-chat.sh")
   allow_stopping_for_update = true
 }
