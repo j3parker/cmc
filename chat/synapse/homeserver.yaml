@@ -1,5 +1,4 @@
-# TODO: change back to cmc.rip with SRV delegation
-server_name: "chat.cmc.rip"
+server_name: "cmc.rip"
 pid_file: /home/synapse/homeserver.pid
 
 # The path to the web client which will be served at /_matrix/client/
@@ -7,7 +6,7 @@ pid_file: /home/synapse/homeserver.pid
 #
 #web_client_location: "/path/to/web/root"
 
-public_baseurl: https://chat.cmc.rip/
+public_baseurl: https://cmc.rip/
 use_presence: false
 
 require_auth_for_profile_requests: true
