@@ -3,6 +3,10 @@
 resource "google_storage_bucket" "chat-keys" {
   name     = "cmc-chat-keys"
   location = "${local.region}"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "google_compute_address" "chat" {
