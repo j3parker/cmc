@@ -14,3 +14,5 @@ WORKDIR /home/synapse
 
 COPY cmc.rip.log.config ./
 COPY homeserver.yaml ./
+
+ENTRYPOINT python3 -B -m synapse.app.homeserver -c homeserver.yaml
