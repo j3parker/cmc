@@ -19,6 +19,13 @@ data "google_compute_image" "ubuntu" {
   project = "gce-uefi-images"
 }
 
+resource "google_compute_disk" "db" {
+  name = "db"
+  type = "pd-standard"
+  size = "5" # GB
+  zone = "${local.zone}"
+}
+
 resource "google_compute_instance" "chat" {
   name         = "chat"
   machine_type = "n1-standard-1"
@@ -29,6 +36,11 @@ resource "google_compute_instance" "chat" {
     initialize_params {
       image = data.google_compute_image.ubuntu.self_link
     }
+  }
+
+  attached_disk {
+    source      = google_compute_disk.db.self_link
+    device_name = "db"
   }
 
   network_interface {

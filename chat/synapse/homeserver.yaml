@@ -186,9 +186,7 @@ max_spider_size: 1M
 
 ## Registration ##
 
-enable_registration: true
-registrations_require_3pid:
-  - email
+enable_registration: false
 
 bcrypt_rounds: 12
 
