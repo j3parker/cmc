@@ -14,12 +14,12 @@ services:
     - "443:443"
     volumes:
     - ./nginx/etc/nginx/conf.d:/etc/nginx/conf.d
-    - ~/keys/letsencrypt:/etc/letsencrypt
+    - ../../keys/letsencrypt:/etc/letsencrypt
     - ./ephemeral/certbot:/var/www/certbot
     entrypoint: "/bin/sh -c 'nginx -g \"daemon off;\" & while true; do sleep 6h; nginx -s reload; done'"
   certbot:
     image: certbot/certbot:v1.0.0
     volumes:
-    - ~/keys/letsencrypt:/etc/letsencrypt
+    - ../../keys/letsencrypt:/etc/letsencrypt
     - ./ephemeral/certbot:/var/www/certbot
     entrypoint: "/bin/sh -c 'while true; do certbot renew; sleep 12h; done'"
