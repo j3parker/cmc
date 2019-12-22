@@ -32,6 +32,10 @@ echo "Creating the mount point for keys"
 mkdir -p /home/synapse/keys
 chown synapse:synapse /home/synapse/keys
 
+echo "Mounting the database volume"
+mount -o discard,defaults /dev/sdb /mnt/db
+chown synapse:synapse /mnt/db
+
 # Mount as root with allow_other which isn't great...
 # TODO: move to rootless docker so that we don't need to do this
 echo "Mounting the keys bucket"
