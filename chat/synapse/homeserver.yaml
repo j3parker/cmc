@@ -1,4 +1,5 @@
-server_name: "cmc.rip"
+# TODO: change back to cmc.rip with SRV delegation
+server_name: "chat.cmc.rip"
 pid_file: /home/synapse/homeserver.pid
 
 # The path to the web client which will be served at /_matrix/client/
@@ -6,7 +7,7 @@ pid_file: /home/synapse/homeserver.pid
 #
 #web_client_location: "/path/to/web/root"
 
-public_baseurl: https://cmc.rip/
+public_baseurl: https://chat.cmc.rip/
 use_presence: false
 
 require_auth_for_profile_requests: true
@@ -22,7 +23,8 @@ block_non_admin_invites: false
 #
 #enable_search: false
 
-federation_domain_whitelist: []
+federation_domain_whitelist:
+  - matrix.org
 
 federation_ip_range_blacklist:
   - '127.0.0.0/8'
@@ -163,6 +165,8 @@ max_image_pixels: 32M
 #    height: 600
 #    method: scale
 
+url_preview_enabled: true
+
 url_preview_ip_range_blacklist:
   - '127.0.0.0/8'
   - '10.0.0.0/8'
@@ -258,7 +262,7 @@ trusted_key_servers:
 password_config:
    # TODO: can we do something better?
    #enabled: false
-   localdb_enabled: false
+   #localdb_enabled: false
 
    # Uncomment and change to a secret random string for extra security.
    # DO NOT CHANGE THIS AFTER INITIAL SETUP!
@@ -452,5 +456,3 @@ user_directory:
 #  module: "my_custom_project.SuperRulesSet"
 #  config:
 #    example_option: 'things'
-
-
