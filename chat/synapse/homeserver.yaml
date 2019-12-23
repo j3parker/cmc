@@ -11,7 +11,7 @@ use_presence: false
 
 require_auth_for_profile_requests: true
 allow_public_rooms_without_auth: false
-allow_public_rooms_over_federation: false
+allow_public_rooms_over_federation: true
 filter_timeline_limit: -1
 block_non_admin_invites: false
 
