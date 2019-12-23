@@ -24,6 +24,10 @@ resource "google_compute_disk" "db" {
   type = "pd-standard"
   size = "5" # GB
   zone = "${local.zone}"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "google_compute_instance" "chat" {
