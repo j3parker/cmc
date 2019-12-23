@@ -1,5 +1,9 @@
 # cmc
 
+An experiment in self-hosting Synapse/Matrix for a group of friends to replace IRC.
+
+Conclusion: the stuff is a bit too buggy for now.
+
 ## Directory layout
 
 * `.github`: CI/CD stuff.
